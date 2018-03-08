@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { Form, FormGroup, ControlLabel, FormControl, Button, Col} from 'react-bootstrap'
 import './CSS/Login.css';
+
 // this is a container that knows abotu redux so...
 // import {connect} from 'react-redux';
 // we need bindActionCreators because we have redux actions that will dispatch
@@ -41,15 +42,16 @@ class Login extends Component{
         email: email,
         password: password
     }
-    console.log(formData)
+    console.log(formData + " formdata")
+      this.props.history.push('/Animations');
   }
     render(){
-        // console.log(this.props.auth);
+        console.log(this.props.auth);
         return(
             <div className="register-wrapper">
                 <h1 className="text-danger">{this.state.error}</h1>
                 <Form horizontal onSubmit={this.handleSubmit}>
-                    <FormGroup controlId="formHorizontalName" validationState={this.state.nameError}>
+                    <FormGroup className="email" controlId="formHorizontalName" validationState={this.state.nameError}>
                         <Col componentClass={ControlLabel} sm={2}>
                             Email
                         </Col>
@@ -57,7 +59,7 @@ class Login extends Component{
                             <FormControl required="true" type="email" name="email" placeholder="Email" />
                         </Col>
                     </FormGroup>
-                    <FormGroup controlId="formHorizontalEmail" validationState={this.state.emailError}>
+                    <FormGroup className="pswd" controlId="formHorizontalEmail" validationState={this.state.emailError}>
                         <Col componentClass={ControlLabel} sm={2}>
                             Password
                         </Col>
@@ -67,7 +69,7 @@ class Login extends Component{
                     </FormGroup>
                     <FormGroup>
                         <Col smOffset={2} sm={10}>
-                            <Button bsStyle="success" bsSize="small" type="submit">
+                            <Button onClick="SetStateToGoToAnimationsPage()" bsStyle="success" bsSize="small" type="submit">
                                 Login
                             </Button>
                         </Col>
@@ -78,8 +80,5 @@ class Login extends Component{
     }
 }
 
-
-
 // export default Login;
 export default Login;
-
